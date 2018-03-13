@@ -9,6 +9,7 @@ package entities;
  *
  * @author mohamed
  */
+/*lool*/
 public class Categories {
     
     private int id;
