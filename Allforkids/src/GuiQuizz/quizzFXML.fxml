@@ -8,20 +8,21 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GuiQuizz.QuizzFXMLController">
     <stylesheets>
         <URL value="@quizzfxml.css" />
     </stylesheets>
    <children>
-      <Button fx:id="add" layoutX="54.0" layoutY="423.0" mnemonicParsing="false" onAction="#addQuestion" text="Add Question" />
-      <Button fx:id="updateButton" layoutX="157.0" layoutY="423.0" mnemonicParsing="false" onAction="#updateQuestion" prefHeight="25.0" prefWidth="74.0" text="Update" />
+      <Button fx:id="add" layoutX="53.0" layoutY="329.0" mnemonicParsing="false" onAction="#addQuestion" text="Add Question" />
+      <Button fx:id="updateButton" layoutX="156.0" layoutY="329.0" mnemonicParsing="false" onAction="#updateQuestion" prefHeight="25.0" prefWidth="74.0" text="Update" />
       <Label layoutX="16.0" layoutY="46.0" prefHeight="25.0" prefWidth="48.0" text="Question" />
       <TextField fx:id="question" layoutX="92.0" layoutY="45.0" promptText="Question..." />
-      <Label layoutX="16.0" layoutY="107.0" prefHeight="25.0" prefWidth="74.0" text="Proposition 1" />
-      <TextField fx:id="repI" layoutX="91.0" layoutY="106.0" promptText="Proposition 1..." />
-      <Label layoutX="13.0" layoutY="352.0" prefHeight="17.0" prefWidth="58.0" text="Category" />
-      <ComboBox fx:id="comboCat" layoutX="94.0" layoutY="348.0" prefWidth="150.0" />
+      <Label layoutX="16.0" layoutY="90.0" prefHeight="25.0" prefWidth="74.0" text="Proposition 1" />
+      <TextField fx:id="repI" layoutX="91.0" layoutY="89.0" promptText="Proposition 1..." />
+      <Label layoutX="16.0" layoutY="281.0" prefHeight="17.0" prefWidth="58.0" text="Category" />
+      <ComboBox fx:id="comboCat" layoutX="97.0" layoutY="277.0" prefWidth="150.0" />
       <AnchorPane id="AnchorPane" layoutX="255.0" layoutY="38.0" prefHeight="458.0" prefWidth="948.0" styleClass="mainFxmlClass">
          <children>
             <TableView fx:id="questionList" layoutX="7.0" layoutY="7.0" prefHeight="330.0" prefWidth="888.0">
@@ -34,15 +35,44 @@
                   <TableColumn fx:id="catCol" prefWidth="112.0" text="Category" />
                </columns>
             </TableView>
-            <Button fx:id="deleteButton" layoutX="14.0" layoutY="386.0" mnemonicParsing="false" onAction="#deleteQuestion" prefHeight="25.0" prefWidth="124.0" text="Delete" />
+            <Button fx:id="deleteButton" layoutX="14.0" layoutY="351.0" mnemonicParsing="false" onAction="#deleteQuestion" prefHeight="25.0" prefWidth="124.0" text="Delete" />
          </children>
       </AnchorPane>
-      <Label layoutX="16.0" layoutY="164.0" prefHeight="25.0" prefWidth="74.0" text="Proposition 2" />
-      <TextField fx:id="repII" layoutX="92.0" layoutY="163.0" promptText="Proposition 2..." />
-      <Label layoutX="16.0" layoutY="226.0" prefHeight="25.0" prefWidth="74.0" text="Proposition 3" />
-      <TextField fx:id="repIII" layoutX="91.0" layoutY="225.0" promptText="Proposition 3..." />
-      <Label layoutX="16.0" layoutY="281.0" prefHeight="25.0" prefWidth="56.0" text="Correct" />
-      <TextField fx:id="repCorrect" layoutX="92.0" layoutY="280.0" promptText="Correct answer..." />
-      <Label layoutX="18.0" layoutY="294.0" prefHeight="25.0" prefWidth="48.0" text="Answer" />
+      <Label layoutX="18.0" layoutY="136.0" prefHeight="25.0" prefWidth="74.0" text="Proposition 2" />
+      <TextField fx:id="repII" layoutX="94.0" layoutY="135.0" promptText="Proposition 2..." />
+      <Label layoutX="18.0" layoutY="182.0" prefHeight="25.0" prefWidth="74.0" text="Proposition 3" />
+      <TextField fx:id="repIII" layoutX="93.0" layoutY="181.0" promptText="Proposition 3..." />
+      <Label layoutX="16.0" layoutY="225.0" prefHeight="25.0" prefWidth="56.0" text="Correct" />
+      <TextField fx:id="repCorrect" layoutX="92.0" layoutY="224.0" promptText="Correct answer..." />
+      <Label layoutX="18.0" layoutY="238.0" prefHeight="25.0" prefWidth="48.0" text="Answer" />
+      <AnchorPane layoutX="10.0" layoutY="463.0" prefHeight="284.0" prefWidth="425.0">
+         <children>
+            <TextField fx:id="lib" layoutX="75.0" layoutY="6.0" prefHeight="25.0" prefWidth="181.0" promptText="Category..." />
+            <Label layoutX="14.0" layoutY="6.0" text="Category" />
+            <Button fx:id="addCat" layoutX="75.0" layoutY="50.0" mnemonicParsing="false" onAction="#addCategory" prefHeight="25.0" prefWidth="66.0" text="Add" />
+            <TableView fx:id="categoriesList" layoutX="287.0" prefHeight="255.0" prefWidth="124.0">
+               <columns>
+                  <TableColumn fx:id="categoriesCol" prefWidth="122.0" text="Categories" />
+               </columns>
+            </TableView>
+            <Button fx:id="updateCat" layoutX="150.0" layoutY="50.0" mnemonicParsing="false" onAction="#updateCategory" text="Update" />
+            <Button fx:id="deleteCat" layoutX="213.0" layoutY="50.0" mnemonicParsing="false" onAction="#deleteCategory" text="Delete" />
+         </children>
+      </AnchorPane>
+      <Label layoutX="10.0" layoutY="425.0" style="-fx-font-weight: bold;" text="Add/Update/Delete a Category">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="10.0" layoutY="8.0" style="-fx-font-weight: bold;" text="Add/Update/Delete a Question">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="615.0" layoutY="8.0" style="-fx-font-weight: bold;" text="Questions list">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

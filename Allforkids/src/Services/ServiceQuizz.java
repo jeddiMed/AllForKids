@@ -89,14 +89,14 @@ public class ServiceQuizz
     
     } 
     
-    public void deleteFilm(QuizzQuestion question){
+    public void deleteQuestion(QuizzQuestion question){
         String req = "DELETE FROM `question` WHERE `id`=?";
         try {
             PreparedStatement ste = con.prepareStatement(req);
             ste.setInt(1, question.getId());
             ste.executeUpdate();
         } catch (SQLException ex) {
-            Logger.getLogger(ServiceFilm.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ServiceQuizz.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }

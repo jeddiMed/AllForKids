@@ -32,15 +32,17 @@ public class ServiceFilm {
     
     public void insertFilm(Film film){
         String req = "INSERT INTO `film`("
-                + "`titre`, `duree`, `description`,`categorie`)"
-                + " VALUES (?,?,?,?)";
+                + "`titre`, `duree`,`minute`,`code_integ`, `description`,`categorie`)"
+                + " VALUES (?,?,?,?,?,?)";
         PreparedStatement ste;
         try {
             ste = con.prepareStatement(req);
             ste.setString(1, film.getTitre());
             ste.setInt(2, film.getDuree());
-            ste.setString(3, film.getDescription());
-            ste.setObject(4, film.getCategorie().getId());
+            ste.setInt(3, film.getMinute());
+            ste.setString(4, film.getCode_integ());
+            ste.setString(5, film.getDescription());
+            ste.setObject(6, film.getCategorie().getId());
             ste.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(ServiceFilm.class.getName()).log(Level.SEVERE, null, ex);
@@ -55,7 +57,7 @@ public class ServiceFilm {
             statement = con.createStatement();
             rs = statement.executeQuery(req);
             while(rs.next()){
-                Film f = new Film(rs.getInt(1),rs.getString(2), rs.getInt(3), rs.getInt(5),rs.getString(4));
+                Film f = new Film(rs.getInt(1),rs.getString(2),rs.getInt(3), rs.getInt(6), rs.getInt(5),rs.getString(4),rs.getString(7));
                 liste.add(f);
             }
     
@@ -66,14 +68,16 @@ public class ServiceFilm {
     }
     public void updateFilm (Film filmOld, Film filmNew){
         String req = "UPDATE `film` SET "
-                + "`titre`=?,`duree`=?,`categorie`=?, `description`=? WHERE `id`=?";
+                + "`titre`=?,`duree`=?,`minute`=?,`code_integ`=?,`categorie`=?, `description`=? WHERE `id`=?";
         try {
             PreparedStatement ste = con.prepareStatement(req);
             ste.setString(1, filmNew.getTitre());
             ste.setInt(2, filmNew.getDuree());
-            ste.setObject(3, filmNew.getCategorie().getId());
-            ste.setString(4, filmNew.getDescription());
-            ste.setInt(5, filmOld.getId());
+            ste.setInt(3, filmNew.getMinute());
+            ste.setString(4, filmNew.getCode_integ());
+            ste.setObject(5, filmNew.getCategorie().getId());
+            ste.setString(6, filmNew.getDescription());
+            ste.setInt(7, filmOld.getId());
             ste.executeUpdate();
         }   
         catch (SQLException ex) {

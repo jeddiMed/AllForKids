@@ -81,29 +81,29 @@ public class ServiceCategorieFilm {
         }
         return cat;
     }
-    /*public void updateFilm (CategorieFilm cat,String lib){
+    public void updateCategory (CategorieFilm catOld,CategorieFilm catNew){
         String req = "UPDATE `categoriefilm` SET "
-                + "`libelle`=? WHERE `libelle`=?";
+                + "`libelle`=? WHERE `id`=?";
         try {
             PreparedStatement ste = con.prepareStatement(req);
-            ste.setString(1, cat.getLibelle());
-            ste.setString(2, lib);
+            ste.setString(1, catNew.getLibelle());
+            ste.setInt(2, catOld.getId());
             ste.executeUpdate();
     }   catch (SQLException ex) {
-            Logger.getLogger(ServiceFilm.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ServiceCategorieFilm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public void deleteFilm(String lib){
-        String req = "DELETE FROM `categoriefilm` WHERE `libelle`=?";
+    public void deleteCategory(CategorieFilm cat){
+        String req = "DELETE FROM `categoriefilm` WHERE `id`=?";
         try {
             PreparedStatement ste = con.prepareStatement(req);
-            ste.setString(1, lib);
+            ste.setInt(1, cat.getId());
             ste.executeUpdate();
         } catch (SQLException ex) {
-            Logger.getLogger(ServiceFilm.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ServiceCategorieFilm.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-    }*/
+    }
 
     
 }

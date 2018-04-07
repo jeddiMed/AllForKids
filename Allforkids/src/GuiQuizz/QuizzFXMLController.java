@@ -62,6 +62,22 @@ public class QuizzFXMLController implements Initializable {
     private TextField repCorrect;
     @FXML
     private ComboBox<CategorieQuizz> comboCat;
+    @FXML
+    private Button updateButton;
+    @FXML
+    private Button deleteButton;
+    @FXML
+    private TextField lib;
+    @FXML
+    private Button addCat;
+    @FXML
+    private Button updateCat;
+    @FXML
+    private Button deleteCat;
+    @FXML
+    private TableView<CategorieQuizz> categoriesList;
+    @FXML
+    private TableColumn<CategorieQuizz, String> categoriesCol;
 
     /**
      * Initializes the controller class.
@@ -70,8 +86,8 @@ public class QuizzFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         ServiceCategorieQuizz sCQ = new ServiceCategorieQuizz();
         ArrayList<CategorieQuizz> cats = (ArrayList<CategorieQuizz>)sCQ.showCategorieQuizz();
-        ObservableList catList = FXCollections.observableArrayList(cats);
-        comboCat.setItems(catList);
+        ObservableList catObservable = FXCollections.observableArrayList(cats);
+        comboCat.setItems(catObservable);
         ServiceQuizz sQ = new ServiceQuizz();
         ArrayList<QuizzQuestion> questions = (ArrayList<QuizzQuestion>)sQ.showQuestions();
         ObservableList questionsObservable = FXCollections.observableArrayList(questions);
@@ -82,7 +98,10 @@ public class QuizzFXMLController implements Initializable {
         repIICol.setCellValueFactory(new PropertyValueFactory<>("reponseII"));
         //repIIICol.setCellValueFactory(new PropertyValueFactory<>("reponseIII"));
         correctRepCol.setCellValueFactory(new PropertyValueFactory<>("reponseCorrect"));
-        this.transferData();
+        categoriesList.setItems(catObservable);
+        categoriesCol.setCellValueFactory(new PropertyValueFactory<>("libelle"));
+        this.transferDataQuestion();
+        this.transferDataCategory();
     }    
 
     @FXML
@@ -119,11 +138,11 @@ public class QuizzFXMLController implements Initializable {
     private void deleteQuestion(ActionEvent e){
         ServiceQuizz svQ = new ServiceQuizz();
         QuizzQuestion question = questionList.getSelectionModel().getSelectedItem();
-        svQ.deleteFilm(question);
+        svQ.deleteQuestion(question);
         questionList.getItems().remove(questionList.getSelectionModel().getSelectedIndex());
     }
     
-    public void transferData(){
+    public void transferDataQuestion(){
         questionList.setOnMouseClicked(new EventHandler<javafx.scene.input.MouseEvent>(){
             @Override
             public void handle (javafx.scene.input.MouseEvent event){
@@ -138,6 +157,48 @@ public class QuizzFXMLController implements Initializable {
             repCorrect.setText(questionObject.getReponseCorrect());
             }
         });
+    }
+    @FXML
+    public void addCategory(ActionEvent e){
+        ServiceCategorieQuizz sv = new ServiceCategorieQuizz();
+        CategorieQuizz cat = new CategorieQuizz(lib.getText());
+        sv.insertCategorie(cat);
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/GuiQuizz/quizzFXML.fxml"));
+            add.getScene().setRoot(root);
+        } catch (IOException ex) {
+            Logger.getLogger(QuizzFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    @FXML
+    public void updateCategory(ActionEvent e){
+    ServiceCategorieQuizz svC = new ServiceCategorieQuizz();
+    CategorieQuizz catOld =categoriesList.getSelectionModel().getSelectedItem();
+    CategorieQuizz catNew = new CategorieQuizz(lib.getText());
+    svC.updateCategory(catOld, catNew);
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/GuiQuizz/quizzFXML.fxml"));
+            add.getScene().setRoot(root);
+        } catch (IOException ex) {
+            Logger.getLogger(QuizzFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public void transferDataCategory(){
+        categoriesList.setOnMouseClicked(new EventHandler<javafx.scene.input.MouseEvent>(){
+            @Override
+            public void handle (javafx.scene.input.MouseEvent event){
+            CategorieQuizz  cat = categoriesList.getSelectionModel().getSelectedItem();
+            lib.setText(cat.getLibelle());
+            }
+        });
+    }
+    @FXML
+    public void deleteCategory (ActionEvent event){
+    ServiceCategorieQuizz sv = new ServiceCategorieQuizz();
+    CategorieQuizz cat = categoriesList.getSelectionModel().getSelectedItem();
+    sv.deleteCategory(cat);
+    categoriesList.getItems().remove(categoriesList.getSelectionModel().getSelectedItem());
     }
     
 }

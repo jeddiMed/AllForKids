@@ -6,7 +6,7 @@
 package Services;
 
 import connexion.DataSource;
-import entity.CategorieQuizz;
+import entity.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -81,4 +81,28 @@ public class ServiceCategorieQuizz
         }
         return liste;
     }
+    public void updateCategory (CategorieQuizz catOld,CategorieQuizz catNew){
+        String req = "UPDATE `categoriequizz` SET "
+                + "`libelle`=? WHERE `id`=?";
+        try {
+            PreparedStatement ste = con.prepareStatement(req);
+            ste.setString(1, catNew.getLibelle());
+            ste.setInt(2, catOld.getId());
+            ste.executeUpdate();
+    }   catch (SQLException ex) {
+            Logger.getLogger(ServiceCategorieQuizz.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public void deleteCategory(CategorieQuizz cat){
+        String req = "DELETE FROM `categoriequizz` WHERE `id`=?";
+        try {
+            PreparedStatement ste = con.prepareStatement(req);
+            ste.setInt(1, cat.getId());
+            ste.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceCategorieQuizz.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+
 }

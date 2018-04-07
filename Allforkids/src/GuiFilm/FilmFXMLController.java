@@ -28,6 +28,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import Services.ServiceCategorieFilm;
 import javafx.event.EventHandler;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -39,6 +40,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
  */
 public class FilmFXMLController implements Initializable {
 
+    @FXML
+    private TextField minute;
+    @FXML
+    private TextArea code_integ;
     @FXML
     private TextField titre;
     @FXML
@@ -61,14 +66,27 @@ public class FilmFXMLController implements Initializable {
     private TableColumn<Film, String> descriptionCol;
    @FXML
     private TableColumn<Film, CategorieFilm> categorieCol;
-   private Button backButton;
-    int idCat;
+    @FXML
+    private TableColumn<Film, Integer> minCol;
+    @FXML
+    private TableColumn<Film, String> urlCol;
     @FXML
     private Button updateButton;
     @FXML
     private Button deleteButton;
-    @FXML
     private Button refresh;
+    @FXML
+    private TextField lib;
+    @FXML
+    private Button addCat;
+    @FXML
+    private TableView<CategorieFilm> catList;
+    @FXML
+    private Button updateCat;
+    @FXML
+    private Button deleteCat;
+    @FXML
+    private TableColumn<CategorieFilm, String> catCol;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         titre.setStyle("-fx-text-inner-color: #193a5a;");
@@ -85,12 +103,28 @@ public class FilmFXMLController implements Initializable {
         dureeCol.setCellValueFactory(new PropertyValueFactory<>("duree"));
         descriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
         categorieCol.setCellValueFactory(new PropertyValueFactory<>("categorie"));
-        this.transferData();
+        minCol.setCellValueFactory(new PropertyValueFactory<>("minute"));
+        urlCol.setCellValueFactory(new PropertyValueFactory<>("code_integ"));
+        catList.setItems(catsObservable);
+        System.out.println(catsObservable);
+        catCol.setCellValueFactory(new PropertyValueFactory<>("libelle"));
+        this.transferDataFilm();
+        this.transferDataCategory();
     }
     @FXML
     public void ajouterFilm (ActionEvent event){
     ServiceFilm sv = new ServiceFilm();
-    Film film = new Film(titre.getText(), Integer.parseInt(duree.getText()),comboCat.getSelectionModel().getSelectedItem().getId() , description.getText());
+    ArrayList<Film> films = (ArrayList<Film>) sv.showFilms();
+    Film film = new Film(titre.getText(), Integer.parseInt(duree.getText()),
+                    comboCat.getSelectionModel().getSelectedItem().getId(),Integer.parseInt(minute.getText()),
+                    description.getText(),code_integ.getText());
+    /*if( films.contains(film)){
+       Alert alert = new Alert(Alert.AlertType.INFORMATION);
+       alert.setHeaderText("ok");
+       alert.setContentText("This Movie is already exists");
+       alert.showAndWait();
+    }
+    else {*/
     sv.insertFilm(film);
         try {
             Parent root = FXMLLoader.load(getClass().getResource("filmFXML.fxml"));
@@ -100,26 +134,15 @@ public class FilmFXMLController implements Initializable {
         }
     }
     
+    
     public void afficherFilm(ActionEvent event){
             try {
-            Parent root = FXMLLoader.load(getClass().getResource("affichageFilmFXML.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("filmFilmFXML.fxml"));
             add.getScene().setRoot(root);
         } catch (IOException ex) {
             Logger.getLogger(FilmFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
- 
-
-    /*public void handleButtonAction(ActionEvent event) {     //load FXML in an AnchorPane 
-        
-            System.out.println("This button works !");
-        try {
-            AnchorPane newLoadedPane =  FXMLLoader.load(getClass().getResource("affichageFilmFXML.fxml"));
-            content.getChildren().add(newLoadedPane);
-        } catch (IOException ex) {
-            Logger.getLogger(FilmFXMLController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }*/
 
     @FXML
     public void deleteMovie (ActionEvent event){
@@ -129,7 +152,6 @@ public class FilmFXMLController implements Initializable {
     filmList.getItems().remove(filmList.getSelectionModel().getSelectedItem());
     }
         
-    @FXML
     public void refreshTable(ActionEvent event){
                 try {
             Parent root = FXMLLoader.load(getClass().getResource("filmFXML.fxml"));
@@ -138,7 +160,7 @@ public class FilmFXMLController implements Initializable {
             Logger.getLogger(FilmFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public void transferData(){
+    public void transferDataFilm(){
     filmList.setOnMouseClicked(new EventHandler<javafx.scene.input.MouseEvent>(){
     @Override
     public void handle (javafx.scene.input.MouseEvent event){
@@ -147,8 +169,9 @@ public class FilmFXMLController implements Initializable {
     titre.setText(film.getTitre());
     comboCat.getSelectionModel().select(cat);
     duree.setText(String.valueOf(film.getDuree()));
-    duree.setText(String.valueOf(film.getDuree()));
+    minute.setText(String.valueOf(film.getMinute()));
     description.setText(film.getDescription());
+    code_integ.setText(film.getCode_integ());
         
     }
     });
@@ -157,16 +180,74 @@ public class FilmFXMLController implements Initializable {
     @FXML
     public void updateMovie(ActionEvent e){
     ServiceFilm sv = new ServiceFilm();
-    Film filmOld =filmList.getSelectionModel().getSelectedItem();
+    Film filmOld =filmList.getSelectionModel().getSelectedItem();  
     Film filmNew = new Film(titre.getText(), Integer.parseInt(duree.getText()),
-                         comboCat.getSelectionModel().getSelectedItem().getId() , description.getText());
-    sv.updateFilm(filmOld, filmNew);
+                    comboCat.getSelectionModel().getSelectedItem().getId(),Integer.parseInt(minute.getText()),
+                    description.getText(),code_integ.getText());
+    if(filmOld.getTitre()==filmNew.getTitre() ){
+       Alert alert = new Alert(Alert.AlertType.INFORMATION);
+       alert.setHeaderText("ok");
+       alert.setContentText("This Movie is already exists");
+       alert.showAndWait();
+    }
+    else { sv.updateFilm(filmOld, filmNew);
         try {
             Parent root = FXMLLoader.load(getClass().getResource("filmFXML.fxml"));
             add.getScene().setRoot(root);
         } catch (IOException ex) {
             Logger.getLogger(FilmFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
     
+    }
+    @FXML
+    public void addCategory(ActionEvent e){
+        ServiceCategorieFilm sv = new ServiceCategorieFilm();
+        CategorieFilm cat = new CategorieFilm(lib.getText());
+        sv.insertCategorie(cat);
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("filmFXML.fxml"));
+            add.getScene().setRoot(root);
+        } catch (IOException ex) {
+            Logger.getLogger(FilmFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    @FXML
+    public void updateCategory(ActionEvent e){
+    ServiceCategorieFilm svC = new ServiceCategorieFilm();
+    CategorieFilm catOld =catList.getSelectionModel().getSelectedItem();
+    CategorieFilm catNew = new CategorieFilm(lib.getText());
+    svC.updateCategory(catOld, catNew);
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("filmFXML.fxml"));
+            add.getScene().setRoot(root);
+        } catch (IOException ex) {
+            Logger.getLogger(FilmFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public void transferDataCategory(){
+        catList.setOnMouseClicked(new EventHandler<javafx.scene.input.MouseEvent>(){
+            @Override
+            public void handle (javafx.scene.input.MouseEvent event){
+            CategorieFilm  cat = catList.getSelectionModel().getSelectedItem();
+            lib.setText(cat.getLibelle());
+            }
+        });
+    }
+    @FXML
+    public void deleteCategory (ActionEvent event){
+    ServiceCategorieFilm sv = new ServiceCategorieFilm();
+    CategorieFilm cat = catList.getSelectionModel().getSelectedItem();
+    sv.deleteCategory(cat);
+    catList.getItems().remove(catList.getSelectionModel().getSelectedItem());
+    }
+    @FXML void toQuizz(ActionEvent e){
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/GuiQuizz/quizzFXML.fxml"));
+            add.getScene().setRoot(root);
+        } catch (IOException ex) {
+            Logger.getLogger(FilmFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
