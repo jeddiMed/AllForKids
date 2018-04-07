@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GuiQuizz.QuizzFXMLController">
+    <stylesheets>
+        <URL value="@quizzfxml.css" />
+    </stylesheets>
+   <children>
+      <Button fx:id="add" layoutX="54.0" layoutY="423.0" mnemonicParsing="false" onAction="#addQuestion" text="Add Question" />
+      <Button fx:id="updateButton" layoutX="157.0" layoutY="423.0" mnemonicParsing="false" onAction="#updateQuestion" prefHeight="25.0" prefWidth="74.0" text="Update" />
+      <Label layoutX="16.0" layoutY="46.0" prefHeight="25.0" prefWidth="48.0" text="Question" />
+      <TextField fx:id="question" layoutX="92.0" layoutY="45.0" promptText="Question..." />
+      <Label layoutX="16.0" layoutY="107.0" prefHeight="25.0" prefWidth="74.0" text="Proposition 1" />
+      <TextField fx:id="repI" layoutX="91.0" layoutY="106.0" promptText="Proposition 1..." />
+      <Label layoutX="13.0" layoutY="352.0" prefHeight="17.0" prefWidth="58.0" text="Category" />
+      <ComboBox fx:id="comboCat" layoutX="94.0" layoutY="348.0" prefWidth="150.0" />
+      <AnchorPane id="AnchorPane" layoutX="255.0" layoutY="38.0" prefHeight="458.0" prefWidth="948.0" styleClass="mainFxmlClass">
+         <children>
+            <TableView fx:id="questionList" layoutX="7.0" layoutY="7.0" prefHeight="330.0" prefWidth="888.0">
+               <columns>
+                  <TableColumn fx:id="questionCol" prefWidth="314.0" text="Question" />
+                  <TableColumn fx:id="repICol" prefWidth="100.0" text="Proposition 1" />
+                  <TableColumn fx:id="repIICol" prefWidth="121.0" text="Proposition 2" />
+                  <TableColumn fx:id="repIIICol" maxWidth="315.0" prefWidth="120.0" text="Proposition 3" />
+                  <TableColumn fx:id="correctRepCol" prefWidth="120.0" text="Correct Answer" />
+                  <TableColumn fx:id="catCol" prefWidth="112.0" text="Category" />
+               </columns>
+            </TableView>
+            <Button fx:id="deleteButton" layoutX="14.0" layoutY="386.0" mnemonicParsing="false" onAction="#deleteQuestion" prefHeight="25.0" prefWidth="124.0" text="Delete" />
+         </children>
+      </AnchorPane>
+      <Label layoutX="16.0" layoutY="164.0" prefHeight="25.0" prefWidth="74.0" text="Proposition 2" />
+      <TextField fx:id="repII" layoutX="92.0" layoutY="163.0" promptText="Proposition 2..." />
+      <Label layoutX="16.0" layoutY="226.0" prefHeight="25.0" prefWidth="74.0" text="Proposition 3" />
+      <TextField fx:id="repIII" layoutX="91.0" layoutY="225.0" promptText="Proposition 3..." />
+      <Label layoutX="16.0" layoutY="281.0" prefHeight="25.0" prefWidth="56.0" text="Correct" />
+      <TextField fx:id="repCorrect" layoutX="92.0" layoutY="280.0" promptText="Correct answer..." />
+      <Label layoutX="18.0" layoutY="294.0" prefHeight="25.0" prefWidth="48.0" text="Answer" />
+   </children>
+</AnchorPane>
