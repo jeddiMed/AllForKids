@@ -18,23 +18,23 @@
    <children>
       <AnchorPane layoutX="10.0" layoutY="62.0" prefHeight="428.0" prefWidth="250.0">
          <children>
-            <Label layoutX="9.0" layoutY="14.0" prefHeight="25.0" prefWidth="48.0" text="Title :" />
-            <TextField fx:id="titre" layoutX="90.0" layoutY="14.0" promptText="Title..." />
-            <Label layoutX="12.0" layoutY="49.0" prefHeight="25.0" prefWidth="48.0" text="Hours" />
-            <TextField fx:id="duree" layoutX="90.0" layoutY="49.0" promptText="Hours..." />
-            <Label layoutX="12.0" layoutY="218.0" prefHeight="17.0" prefWidth="58.0" text="Category" />
-            <ComboBox fx:id="comboCat" layoutX="89.0" layoutY="214.0" prefWidth="150.0" />
-            <Label layoutX="12.0" layoutY="248.0" prefHeight="25.0" prefWidth="66.0" text="Description" />
-            <TextArea fx:id="description" layoutX="90.0" layoutY="248.0" prefHeight="107.0" prefWidth="149.0" promptText="Description..." />
-            <Button fx:id="updateButton" layoutX="155.0" layoutY="389.0" mnemonicParsing="false" onAction="#updateMovie" prefHeight="25.0" prefWidth="74.0" text="Update" />
-            <Button fx:id="add" layoutX="53.0" layoutY="389.0" mnemonicParsing="false" onAction="#ajouterFilm" text="Add Movie" />
-            <Label layoutX="12.0" layoutY="82.0" prefHeight="25.0" prefWidth="48.0" text="Minutes" />
-            <TextField fx:id="minute" layoutX="90.0" layoutY="82.0" promptText="Minutes..." />
-            <Label layoutX="12.0" layoutY="118.0" prefHeight="25.0" prefWidth="48.0" text="URL" />
-            <TextArea fx:id="code_integ" layoutX="88.0" layoutY="117.0" prefHeight="80.0" prefWidth="150.0" promptText="URL..." />
+            <Label layoutX="-2.0" layoutY="14.0" prefHeight="25.0" prefWidth="48.0" text="Title :" />
+            <TextField fx:id="titre" layoutX="67.0" layoutY="14.0" promptText="Title..." />
+            <Label layoutX="1.0" layoutY="49.0" prefHeight="25.0" prefWidth="48.0" text="Hours" />
+            <TextField fx:id="duree" layoutX="67.0" layoutY="49.0" promptText="Hours..." />
+            <Label layoutX="1.0" layoutY="218.0" prefHeight="17.0" prefWidth="58.0" text="Category" />
+            <ComboBox fx:id="comboCat" layoutX="66.0" layoutY="214.0" prefWidth="150.0" />
+            <Label layoutX="1.0" layoutY="248.0" prefHeight="25.0" prefWidth="66.0" text="Description" />
+            <TextArea fx:id="description" layoutX="67.0" layoutY="248.0" prefHeight="107.0" prefWidth="149.0" promptText="Description..." />
+            <Button fx:id="updateButton" layoutX="132.0" layoutY="389.0" mnemonicParsing="false" onAction="#updateMovie" prefHeight="25.0" prefWidth="74.0" text="Update" />
+            <Button fx:id="add" layoutX="30.0" layoutY="389.0" mnemonicParsing="false" onAction="#ajouterFilm" text="Add Movie" />
+            <Label layoutX="1.0" layoutY="82.0" prefHeight="25.0" prefWidth="48.0" text="Minutes" />
+            <TextField fx:id="minute" layoutX="67.0" layoutY="82.0" promptText="Minutes..." />
+            <Label layoutX="1.0" layoutY="118.0" prefHeight="25.0" prefWidth="48.0" text="URL" />
+            <TextArea fx:id="code_integ" layoutX="65.0" layoutY="117.0" prefHeight="80.0" prefWidth="150.0" promptText="URL..." />
          </children>
       </AnchorPane>
-      <AnchorPane id="AnchorPane" layoutX="259.0" layoutY="61.0" prefHeight="400.0" prefWidth="663.0" styleClass="mainFxmlClass">
+      <AnchorPane id="AnchorPane" layoutX="233.0" layoutY="62.0" prefHeight="400.0" prefWidth="663.0" styleClass="mainFxmlClass">
          <children>
             <TableView fx:id="filmList" prefHeight="284.0" prefWidth="658.0">
                <columns>
@@ -50,25 +50,25 @@
             <Button fx:id="deleteButton" layoutX="14.0" layoutY="309.0" mnemonicParsing="false" onAction="#deleteMovie" prefHeight="25.0" prefWidth="124.0" text="Delete" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="845.0" layoutY="69.0" prefHeight="284.0" prefWidth="339.0">
+      <AnchorPane layoutX="813.0" layoutY="57.0" prefHeight="284.0" prefWidth="438.0">
          <children>
             <TextField fx:id="lib" layoutX="87.0" layoutY="6.0" prefHeight="25.0" prefWidth="181.0" promptText="Category..." />
             <Button fx:id="addCat" layoutX="87.0" layoutY="50.0" mnemonicParsing="false" onAction="#addCategory" prefHeight="25.0" prefWidth="66.0" text="Add" />
-            <TableView fx:id="catList" layoutX="287.0" prefHeight="284.0" prefWidth="124.0">
+            <TableView fx:id="catList" layoutX="278.0" prefHeight="284.0" prefWidth="74.0">
               <columns>
-                <TableColumn fx:id="catCol" prefWidth="122.0" text="Categories" />
+                <TableColumn fx:id="catCol" prefWidth="77.0" text="Categories" />
               </columns>
             </TableView>
-            <Button fx:id="updateCat" layoutX="162.0" layoutY="50.0" mnemonicParsing="false" onAction="#updateCategory" text="Update" />
-            <Button fx:id="deleteCat" layoutX="225.0" layoutY="50.0" mnemonicParsing="false" onAction="#deleteCategory" text="Delete" />
+            <Button fx:id="updateCat" layoutX="159.0" layoutY="50.0" mnemonicParsing="false" onAction="#updateCategory" text="Update" />
+            <Button fx:id="deleteCat" layoutX="220.0" layoutY="50.0" mnemonicParsing="false" onAction="#deleteCategory" text="Delete" />
          </children>
       </AnchorPane>
-      <Label layoutX="503.0" layoutY="26.0" style="-fx-font-weight: Bold;" text="Movies List">
+      <Label layoutX="478.0" layoutY="26.0" style="-fx-font-weight: Bold;" text="Movies List">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="877.0" layoutY="26.0" style="-fx-font-weight: bold;" text="Add/Update/Delete a Category">
+      <Label layoutX="863.0" layoutY="26.0" style="-fx-font-weight: bold;" text="Add/Update/Delete a Category">
          <font>
             <Font size="20.0" />
          </font>

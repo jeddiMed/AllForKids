@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="730.0" prefWidth="1490.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="menuadmin.AdminController">
+    <stylesheets>
+        <URL value="@admin.css" />
+    </stylesheets>
+   <children>
+      <AnchorPane fx:id="addpane" layoutX="-9.0" layoutY="-1.0" onMouseClicked="#handleButtonAction" prefHeight="730.0" prefWidth="187.0" style="-fx-background-color: #0747A6;">
+         <children>
+            <Button fx:id="btn_dash" alignment="BASELINE_LEFT" layoutX="25.0" layoutY="39.0" mnemonicParsing="false" onAction="#handleButtonActionn" style="-fx-background-color: #0747A6;" text="Dashboard" textFill="#eee9e9">
+               <font>
+                  <Font size="19.0" />
+               </font></Button>
+            <Button fx:id="btn_club" alignment="BASELINE_LEFT" layoutX="5.0" layoutY="89.0" mnemonicParsing="false" onAction="#dashboardButtons" style="-fx-background-color: #0747A6;" text="Gestion des clubs" textFill="#eee9e9" />
+            <Button fx:id="btn_livre" alignment="BASELINE_LEFT" layoutX="5.0" layoutY="128.0" mnemonicParsing="false" onAction="#dashboardButtons" style="-fx-background-color: #0747A6;" stylesheets="@admin.css" text="Gestion des livres" textFill="#eee9e9" />
+            <Button fx:id="btn_film" alignment="BASELINE_LEFT" layoutX="5.0" layoutY="167.0" mnemonicParsing="false" onAction="#dashboardButtons" style="-fx-background-color: #0747A6;" text="Gestion des films" textFill="#eee9e9" />
+            <Button fx:id="btn_filmCat" alignment="BASELINE_LEFT" layoutX="5.0" layoutY="206.0" mnemonicParsing="false" onAction="#dashboardButtons" style="-fx-background-color: #0747A6;" stylesheets="@admin.css" text="Gestion des Categories des films" textFill="#eee9e9" />
+            <Button fx:id="btn_jeux" alignment="BASELINE_LEFT" layoutX="5.0" layoutY="240.0" mnemonicParsing="false" onAction="#dashboardButtons" style="-fx-background-color: #0747A6;" text="Gestion des jeux" textFill="#eee9e9" />
+            <Button fx:id="btn_evenement" alignment="BASELINE_LEFT" layoutX="5.0" layoutY="273.0" mnemonicParsing="false" onAction="#dashboardButtons" style="-fx-background-color: #0747A6;" stylesheets="@admin.css" text="Gestion des evenements" textFill="#eee9e9" />
+            <Button fx:id="btn_commande" alignment="BASELINE_LEFT" layoutX="5.0" layoutY="312.0" mnemonicParsing="false" onAction="#dashboardButtons" style="-fx-background-color: #0747A6;" text="Afficher les commandes" textFill="#eee9e9" />
+            <Button fx:id="btn_ecole" alignment="BASELINE_LEFT" layoutX="5.0" layoutY="351.0" mnemonicParsing="false" onAction="#dashboardButtons" style="-fx-background-color: #0747A6;" stylesheets="@admin.css" text="Gestion des ecoles" textFill="#eee9e9" />
+            <Button fx:id="btn_garderie" alignment="BASELINE_LEFT" layoutX="4.0" layoutY="390.0" mnemonicParsing="false" onAction="#dashboardButtons" style="-fx-background-color: #0747A6;" stylesheets="@admin.css" text="Gestion des garderies" textFill="#eee9e9" />
+            <Button fx:id="btn_donation" alignment="BASELINE_LEFT" layoutX="5.0" layoutY="429.0" mnemonicParsing="false" onAction="#dashboardButtons" style="-fx-background-color: #0747A6;" text="Afficher les donations" textFill="#eee9e9" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="content" layoutX="184.0" prefHeight="720.0" prefWidth="1280.0" />
+   </children>
+</AnchorPane>

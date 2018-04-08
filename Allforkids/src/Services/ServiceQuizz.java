@@ -100,5 +100,22 @@ public class ServiceQuizz
         }
         
     }
-    
+      public void insertResult(QuizzResult result)
+    {
+        String req = "INSERT INTO `result`(`idUser`, `score`, `question`,`categorie`)"
+                + " VALUES (?,?,?,?)"
+;
+        
+        try {
+            PreparedStatement ste = con.prepareStatement(req);
+            ste.setInt(1, result.getUserId());
+            ste.setInt(2, result.getScore());
+            ste.setObject(3, result.getQuestionsList());
+            ste.setObject(4, result.getCategorie());
+            ste.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceQuizz.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
 }

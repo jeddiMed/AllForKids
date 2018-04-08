@@ -63,7 +63,7 @@ public class ServiceCategorieQuizz
         return cat;
     }
 
-    public List showCategorieQuizz()
+    public ArrayList showCategorieQuizz()
     {
         String req = "select * from categoriequizz";
         ArrayList liste = new ArrayList();

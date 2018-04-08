@@ -13,6 +13,14 @@ public class QuizzResult
     private ArrayList questionsList;
     private CategorieQuizz categorie;
 
+    public QuizzResult(int id, int userId, int score, ArrayList questionsList, CategorieQuizz categorie)
+    {   
+        this.id = id;
+        this.userId = userId;
+        this.score = score;
+        this.questionsList = questionsList;
+        this.categorie = categorie;
+    }
     public QuizzResult(int userId, int score, ArrayList questionsList, CategorieQuizz categorie)
     {
         this.userId = userId;
