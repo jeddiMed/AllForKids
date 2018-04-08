@@ -86,7 +86,7 @@ public class ServiceFilm {
     }
     
     public void deleteFilm(Film film){
-        String req = "DELETE FROM `film` WHERE `id`=?";
+        String req = "DELETE FROM `film` WHERE `id`=? IGNORE CONSTRAINTS";
         try {
             PreparedStatement ste = con.prepareStatement(req);
             ste.setInt(1, film.getId());

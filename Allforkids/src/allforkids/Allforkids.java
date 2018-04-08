@@ -36,7 +36,7 @@ public class Allforkids extends Application {
         
        try {
            //parent = FXMLLoader.load(getClass().getResource("moviePlayerFXML.fxml"));
-           parent = FXMLLoader.load(getClass().getResource("/GuiFilm/filmFXML.fxml"));
+           parent = FXMLLoader.load(getClass().getResource("/GuiFilm/singleFilmFXML.fxml"));
        } catch (IOException ex) {
            Logger.getLogger(Allforkids.class.getName()).log(Level.SEVERE, null, ex);
        }

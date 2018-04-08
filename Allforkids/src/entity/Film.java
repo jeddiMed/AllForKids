@@ -24,6 +24,7 @@ public class Film {
     private Button deleteButton;
     private ServiceFilm sv;
     private CategorieFilm categorie;
+    private String path;
 
     public Film(int id, String titre, int duree,Integer minute, Integer idCat, String description,String url) {
         ServiceCategorieFilm svCat = new ServiceCategorieFilm();
@@ -37,6 +38,7 @@ public class Film {
         this.deleteButton = new Button ("Delete");
         this.sv = new ServiceFilm();
         this.code_integ = url;
+        
     }    
     
     public Film(String titre, int duree,Integer minute, String description,String url) {
@@ -121,6 +123,15 @@ public class Film {
         this.code_integ = code_integ;
     }
 
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+    
+    
  
     @Override
     public String toString() {
