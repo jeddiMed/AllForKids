@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package GuiQuizz;
+package Controllers;
 
 import entity.*;
 import Services.*;

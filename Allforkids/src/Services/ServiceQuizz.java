@@ -118,4 +118,25 @@ public class ServiceQuizz
         }
         
     }
+      
+    public ArrayList showSameCategorieQuestions(CategorieQuizz c)
+    {
+        String req = "select * from question where `categorie` ="+c.getId();
+        ArrayList liste = new ArrayList();
+        
+        try {
+            statement = con.createStatement();
+            rs = statement.executeQuery(req);
+            while(rs.next()){
+                QuizzQuestion q = new QuizzQuestion (rs.getInt("id"), rs.getString("question"),rs.getInt("categorie"), rs.getString("reponseI"),rs.getString("reponseII"),rs.getString("reponseIII"),rs.getString("reponseCorrect"));
+                liste.add(q);
+            }
+           
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceQuizz.class.getName()).log(Level.SEVERE, null, ex);
+        }
+          
+        return liste;
+    }
 }

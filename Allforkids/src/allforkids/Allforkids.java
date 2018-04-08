@@ -37,7 +37,7 @@ public class Allforkids extends Application {
        try {
            //parent = FXMLLoader.load(getClass().getResource("moviePlayerFXML.fxml"));
            //parent = FXMLLoader.load(getClass().getResource("/menuadmin/admin.fxml"));
-           parent = FXMLLoader.load(getClass().getResource("/GuiQuizz/QuizzFrontFXML.fxml"));
+           parent =(Parent) FXMLLoader.load(getClass().getResource("/GuiQuizz/QuizzFrontFXML.fxml"));
        } catch (IOException ex) {
            Logger.getLogger(Allforkids.class.getName()).log(Level.SEVERE, null, ex);
        }
@@ -46,15 +46,6 @@ public class Allforkids extends Application {
             primaryStage.setTitle("All For Kids");
             primaryStage.setScene(scene1);
             primaryStage.show();
-    
-    
-//        ServiceQuizz sQ = new ServiceQuizz();
-//        ServiceCategorieQuizz sCQ = new ServiceCategorieQuizz();
-//        QuizzQuestion quizzQ = new QuizzQuestion("okey","prop1","prop2","prop3","repCorrect",2);
-//        CategorieQuizz catQuizz = new CategorieQuizz("Science");
-//        ArrayList<QuizzQuestion> listQuestions = sQ.showQuestions();
-//        System.out.println(listQuestions);
-//        System.out.println("DONE!!!!");
     }
 
 

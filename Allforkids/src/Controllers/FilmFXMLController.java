@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package GuiFilm;
+package Controllers;
 
 import Services.ServiceCategorieFilm;
 import java.net.URL;
@@ -226,6 +226,7 @@ public class FilmFXMLController implements Initializable {
             Logger.getLogger(FilmFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
     public void transferDataCategory(){
         catList.setOnMouseClicked(new EventHandler<javafx.scene.input.MouseEvent>(){
             @Override
@@ -235,6 +236,7 @@ public class FilmFXMLController implements Initializable {
             }
         });
     }
+    
     @FXML
     public void deleteCategory (ActionEvent event){
     ServiceCategorieFilm sv = new ServiceCategorieFilm();
@@ -242,7 +244,9 @@ public class FilmFXMLController implements Initializable {
     sv.deleteCategory(cat);
     catList.getItems().remove(catList.getSelectionModel().getSelectedItem());
     }
-    @FXML void toQuizz(ActionEvent e){
+    
+    @FXML
+    void toQuizz(ActionEvent e){
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/GuiQuizz/quizzFXML.fxml"));
             add.getScene().setRoot(root);

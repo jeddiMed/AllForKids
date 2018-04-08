@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SingleQuizzFXMLController">
+    <stylesheets>
+        <URL value="@/css/singlequizzfxml.css" />
+    </stylesheets>
+   <children>
+      <Label layoutY="18.0" text="Category :" />
+      <Label fx:id="categorieLabel" layoutX="62.0" layoutY="18.0" prefHeight="18.0" prefWidth="84.0" textFill="#751717" />
+      <Label layoutX="489.0" layoutY="20.0" text="Score :" />
+      <Label fx:id="categorieLabel1" layoutX="530.0" layoutY="20.0" text="MyScore" textFill="#751717" />
+      <Label fx:id="questionLabel" layoutX="85.0" layoutY="86.0" prefHeight="125.0" prefWidth="441.0" wrapText="true">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="numQuestion" layoutX="187.0" layoutY="43.0" prefHeight="50.0" prefWidth="236.0" text="Question">
+         <font>
+            <Font name="System Bold" size="34.0" />
+         </font>
+      </Label>
+      <JFXButton fx:id="submitButton" layoutX="202.0" layoutY="315.0" prefHeight="62.0" prefWidth="134.0" style="-fx-background-color: #365c86;" text="Confirm" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </JFXButton>
+      <VBox fx:id="myVBox" layoutX="202.0" layoutY="190.0" prefHeight="125.0" prefWidth="312.0">
+         <children>
+            <JFXCheckBox fx:id="checkboxI" checkedColor="#107983">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </JFXCheckBox>
+            <JFXCheckBox fx:id="checkboxII" checkedColor="#107983" layoutX="10.0" layoutY="10.0" prefHeight="38.0" prefWidth="129.0">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </JFXCheckBox>
+            <JFXCheckBox fx:id="checkboxIII" checkedColor="#107983" layoutX="10.0" layoutY="44.0" prefWidth="129.0">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </JFXCheckBox>
+         </children>
+      </VBox>
+      <JFXButton fx:id="backButton" layoutX="14.0" layoutY="352.0" style="-fx-background-color: #961414;" text="Back" textFill="WHITE">
+         <graphic>
+            <FontAwesomeIconView fill="WHITE" glyphName="ARROW_CIRCLE_LEFT" />
+         </graphic>
+      </JFXButton>
+   </children>
+</AnchorPane>
